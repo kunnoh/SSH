@@ -78,18 +78,19 @@ PubkeyAuthentication yes
 2. Complete `sshd_config` with ssh hardening.  
 ```conf
 Include /etc/ssh/sshd_config.d/*.conf
-PubkeyAuthentication yes         # Allow public key authentication
-PasswordAuthentication no        # Disable password-based authentication
 KbdInteractiveAuthentication no
 UsePAM yes
-PermitRootLogin no               # Disable root login
-PermitEmptyPasswords no          # Prevent empty password logins
-ChallengeResponseAuthentication no
-X11Forwarding no                 # Disable X11 forwarding unless explicitly needed
-AllowTcpForwarding no            # Disable TCP forwarding unless explicitly needed
 PrintMotd no
 AcceptEnv LANG LC_*
 Subsystem       sftp    /usr/lib/openssh/sftp-server
+ChallengeResponseAuthentication no
+
+PubkeyAuthentication yes         # Allow public key authentication
+PasswordAuthentication no        # Disable password-based authentication
+PermitRootLogin no               # Disable root login
+PermitEmptyPasswords no          # Prevent empty password logins
+X11Forwarding no                 # Disable X11 forwarding unless explicitly needed
+AllowTcpForwarding no            # Disable TCP forwarding unless explicitly needed
 MaxAuthTries 3                   # Limit the number of failed authentication attempts
 PermitUserEnvironment no         # Disable reading user environment files
 ClientAliveInterval 300          # Disconnect idle clients after 5 minutes
